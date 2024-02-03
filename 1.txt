@@ -1,0 +1,47 @@
+Talwind css
+
+utility class inseatd of apply css classes. pre build styles.
+
+Alpine Js
+
+javascript framework. It provides a simple syntax for adding event listeners, conditionals, and loops to your HTML templates.
+
+why livewire
+
+create dynamic component without use javascript only php and blade
+Every time the user updates something, Livewire’s JavaScript makes a request to the server and then refreshes the page, making it feel like a single-page application.
+Real-Time Interaction without JavaScript 
+No api enpoints and ajax request
+
+Benefits of TALL Stack
+Efficiency -> no learn about any javascript frame work
+rapid development -> developers can deliver projects faster and more efficiently.
+Simplified Maintenance -> 
+Improved User Experience -> updating page without full page refresh
+
+- user and admin 2 roles
+- user can register and login into system
+- user potani and jene follw kare 6e eeni post joi shakse
+- user post ne comment and like kari shake 6e
+- small component ma divide karyu 6e so nested compoenet concept use karyo 6e
+- like and comment per without refresh load thay 6e and count plus thay 6e
+- infinte scrolling jem scroll kairsu eem data load thase default 3 karaya 6e
+
+nested componenet, event dispatch listner, infinite scrolling
+
+Laravel Sail is a light-weight command-line interface for interacting with Laravel's default Docker development environment. laravel command easlily run kari shako 60
+
+Leadership skills
+Sail
+TAll Stack
+
+"scripts": {
+        // "scss": "node-sass resources/scss -o css",
+        // "dev": "npm run development",
+        // "development": "mix",
+        // "watch": "mix watch",
+        // "watch-poll": "mix watch -- --watch-options-poll=1000",
+        // "hot": "mix watch --hot",
+        // "prod": "npm run production",
+        // "production": "mix --production"
+    },

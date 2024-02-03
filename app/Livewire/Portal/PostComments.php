@@ -17,21 +17,15 @@ class PostComments extends Component
     public $comment = null;
     public $replyComment = null;
 
-    protected $listeners = ['loadComments', 'showComment'];
+    protected $listeners = ['loadComments'];
 
-    public function showComment()
+
+    public function mount(Post $post)
     {
-        \Log::info('showCommentModal');
+        $this->post = $post;
+        // $this->totalComments = $this->post->postComments->count();
+        $this->loadComments();
     }
-
-    // public function mount(Post $post)
-    // {
-    //     \Log::info('browser event');
-    //     $this->post = $post;
-    //     // $this->totalComments = $this->post->postComments->count();
-    //     $this->loadComments();
-    //     $this->dispatchBrowserEvent('open-comment-modal');
-    // }
 
     public function loadComments()
     {

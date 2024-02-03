@@ -167,10 +167,9 @@
                             </svg>
                         </span>
                         <!-- Modal toggle -->
-                        <button wire:click="$dispatch('showComment', { post: {{ $post }} })" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                        {{-- <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                           Toggle modal
-                        </button>
-                        <livewire:portal.post-comments />
+                        </button> --}}
                        {{--  <img class="inline-block object-cover w-10 h-10 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                         <img class="inline-block object-cover w-10 h-10 -ml-2 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                         <img class="inline-block object-cover w-10 h-10 -ml-2 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" alt="">
@@ -203,7 +202,7 @@
                         <div class="flex text-gray-700  rounded-md mb-2 mr-4 items-center">Likes: <div class="ml-1 text-gray-400  text-ms"> {{ $post->postLikes->count() }}</div></div>
                     </div>
                 </div>
-                {{-- <livewire:portal.post-comments :$post :key="'comments.'.$post->id"/> --}}
+                <livewire:portal.post-comments :$post :key="'comments.'.$post->id"/>
             </div>
             @empty
             <p>No Posts Found.</p>
@@ -211,6 +210,59 @@
             <div x-intersect="$wire.loadMorePost()"></div>
         </article>
     </div>
+     <!-- Main modal -->
+<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Comments
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+                <ul>
+                   <li>
+                    <div class="text-black p-4 antialiased flex">
+                        <img class="rounded-full h-9 w-9 mr-2 mt-1" src="">
+                        <div class="w-full">
+                            <div class="bg-gray-100 rounded-lg px-4 pt-2 pb-2.5">
+                                <div class="font-semibold text-sm leading-relaxed">Rutul</div>
+                                <div class="text-xs leading-snug md:leading-normal">2</div>
+                            </div>
+                            <div class="text-xs mt-0.5 text-gray-500">5 Mins ago</div>
+                            <div class="bg-white border border-white rounded-full float-right -mt-8 mr-0.5 flex shadow items-center">
+                                <!-- Like Button -->
+                                <svg class="p-0.5 h-5 w-5 rounded-full z-20 bg-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <!-- ... (Your SVG Path for Like Button) ... -->
+                                </svg>
+                                <!-- Heart Button -->
+                                <svg class="p-0.5 h-5 w-5 rounded-full -ml-1.5 bg-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <!-- ... (Your SVG Path for Heart Button) ... -->
+                                </svg>
+                                <span class="text-sm ml-1 pr-1.5 text-gray-500">3</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                <button data-modal-hide="static-modal" type="button" class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
+            </div>
+        </div>
+    </div>
+</div>
     </main>
 {{-- <section class="w-full flex justify-center mt-[50px] px-0 py-10">
 <div class=" w-[70%] max-w-[1000px] grid grid-cols-[60%_40%] gap-[30px]">
@@ -281,11 +333,4 @@
         const replyBox = button.nextElementSibling;
         replyBox.classList.toggle('hidden');
     }
-
-     document.addEventListener('DOMContentLoaded', function () {
-        Livewire.on('open-comment-modal', function () {
-            // Open your modal here using JavaScript or your preferred modal library
-            // Example: $('#commentModal').modal('show');
-        });
-    });
 </script>

@@ -163,10 +163,4 @@ class Home extends Component
             'posts' => $posts
         ])->layout('components.layouts.portal-app');
     }
-
-    // public function showCommentModal($post)
-    // {
-    //     \Log::info('show');
-    //     $this->dispatch('showComment', $post);
-    // }
 }

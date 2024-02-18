@@ -34,6 +34,7 @@
                     </div>
                 </footer>
             </form>
+            <livewire:portal.post-comments/>
             @forelse($posts as $post)
             <div class="bg-white shadow rounded-lg mb-6" wire:key="post.{{$post->id}}">
                 <div class="flex flex-row px-2 py-3 mx-3">
@@ -167,9 +168,9 @@
                             </svg>
                         </span>
                         <!-- Modal toggle -->
-                        {{-- <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                        <button wire:click="$dispatch('showComment', { post : {{$post}} })" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                           Toggle modal
-                        </button> --}}
+                        </button>
                        {{--  <img class="inline-block object-cover w-10 h-10 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                         <img class="inline-block object-cover w-10 h-10 -ml-2 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                         <img class="inline-block object-cover w-10 h-10 -ml-2 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" alt="">
@@ -202,7 +203,7 @@
                         <div class="flex text-gray-700  rounded-md mb-2 mr-4 items-center">Likes: <div class="ml-1 text-gray-400  text-ms"> {{ $post->postLikes->count() }}</div></div>
                     </div>
                 </div>
-                <livewire:portal.post-comments :$post :key="'comments.'.$post->id"/>
+                {{-- <livewire:portal.post-comments/> --}}
             </div>
             @empty
             <p>No Posts Found.</p>
@@ -211,7 +212,7 @@
         </article>
     </div>
      <!-- Main modal -->
-<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+{{-- <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -262,7 +263,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
     </main>
 {{-- <section class="w-full flex justify-center mt-[50px] px-0 py-10">
 <div class=" w-[70%] max-w-[1000px] grid grid-cols-[60%_40%] gap-[30px]">
@@ -327,10 +328,52 @@
 </div>
 </section> --}}
 </div>
+@push('custom-scripts')
 <script>
     function toggleReplyBox(button) {
         // Toggle visibility of the next sibling div (reply text box)
         const replyBox = button.nextElementSibling;
         replyBox.classList.toggle('hidden');
     }
+
+    // document.addEventListener('livewire:load', function () {
+    //     Livewire.on('open-comment-modal', function () {
+    //         alert('Test Event Fired');
+    //     });
+    // });
+
+    // Livewire.on('open-comment-modal',  function(post) {
+    //      $('#static-modal').modal('show');
+    // })
+    //  window.addEventListener('open-comment-modal', function () {
+    //     alert('hi');
+    //     jQuery('#static-modal').modal('show');
+    // });
+    //
+
+    Livewire.on('open-comment-modal', function () {
+        // Your logic to open the comment modal
+        // alert('Open Comment Modal');
+        // $('#static-modal').modal('show');
+        const $targetEl = document.getElementById('modalEl');
+      //   const options = {
+      //     placement: 'bottom-right',
+      //     backdrop: 'dynamic',
+      //     backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+      //     closable: true,
+      //     onHide: () => {
+      //         console.log('modal is hidden');
+      //     },
+      //     onShow: () => {
+      //         console.log('modal is shown');
+      //     },
+      //     onToggle: () => {
+      //         console.log('modal has been toggled');
+      //     }
+      // };
+        const modal = new Modal($targetEl);
+        modal.show();
+
+    });
 </script>
+@endpush

@@ -12,21 +12,28 @@ class PostComments extends Component
     public $post;
     public $comments = [];
     public $totalParentComments;
-    public $perPage = 10;
+    public $perPage = 2;
     public $nestedPerPage = 2;
     public $comment = null;
     public $replyComment = null;
 
-    protected $listeners = ['loadComments', 'showComment'];
+    protected $listeners = ['loadComments'];
 
-    public function showComment(Post $post)
+    // public function showComment(Post $post)
+    // {
+    //     \Log::info($post);
+    //     $this->post = $post;
+    //     $this->loadComments();
+    //     $this->dispatch('open-comment-modal');
+    // }
+
+     public function mount(Post $post)
     {
-        \Log::info($post);
+        // \Log::info('showCommentModal');
         $this->post = $post;
+        // $this->totalComments = $this->post->postComments->count();
         $this->loadComments();
-        $this->dispatch('open-comment-modal');
     }
-
     // public function mount(Post $post)
     // {
     // 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

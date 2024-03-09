@@ -275,7 +275,7 @@
             </li> --}}
         </ul>
     </div>
-    <div class="sidenav-footer mx-3 mt-3 pt-3">
+   {{--  <div class="sidenav-footer mx-3 mt-3 pt-3">
         <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
             <div class="full-background" style="background-image: url('../assets/img/curved-images/white-curved.jpeg')">
             </div>
@@ -293,5 +293,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </aside>

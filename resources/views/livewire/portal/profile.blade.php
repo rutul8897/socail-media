@@ -72,30 +72,91 @@
                 </form>
             </div>
         </div>
+        <div class="bg-white h-auto px-48">
+           {{--  <hr class="border-gray-500 mt-6" />
+            <hr class="border-gray-500 w-20 border-t-1 ml-64 border-gray-800" /> --}}
 
+            <div class="flex flex-row mt-4 justify-center mr-16">
+                <div class="flex text-gray-700 text-center py-2 m-2 pr-5">
+                    <div class="flex inline-flex">
+                        <button class="border-transparent text-gray-800 rounded-full hover:text-blue-600 focus:outline-none focus:text-gray-600" aria-label="Notifications" wire:click="selectSection('followings')">
+                             <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex inline-flex ml-2 mt-1">
+                        <h3 class="text-sm {{ $isFollowingSection ? 'font-bold' : 'font-medium' }}  text-gray-800 mr-2">Followings</h3>
+                    </div>
+                </div>
 
-        <div class="bg-white shadow mt-6 rounded-lg p-6 overflow-x-auto">
-            <h3 class="text-gray-600 text-sm font-semibold mb-4 sticky top-0 bg-white z-10 px-6">
-                Followings
-            </h3>
-            <ul id="storiesContainer" class="flex space-x-4 p-4 list-none">
-                <!-- Your story items here -->
-                <!-- Example: Add 11 story items dynamically -->
-               @forelse($followingUsers as $followingUser)
-                <li class="flex-shrink-0 flex flex-col items-center">
-                    <a class="block bg-white p-1 rounded-full" href="#">
-                        <img class="w-16 rounded-full" src="{{ $followingUser->following->photo }}">
-                    </a>
-                    <!-- Username -->
-                    <span class="text-xs text-gray-500 mt-1">
-                        {{ $followingUser->following->name }}
-                    </span>
-                </li>
-                @empty
-                    <p>No Following Users Found.</p>
-                @endforelse
-            </ul>
+                <div class="flex text-gray-700 text-center py-2 m-2 pr-5">
+                    <div class="flex inline-flex">
+                        <button class="border-transparent text-gray-600 rounded-full hover:text-blue-600 focus:outline-none focus:text-gray-600" aria-label="Notifications" wire:click="selectSection('savedPost')">
+                            <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex inline-flex ml-2 mt-1">
+                        <h3 class="text-sm {{ $isSavedPostSection ? 'font-bold' : 'font-medium' }} text-gray-700 mr-2">SAVED</h3>
+                    </div>
+                </div>
+            </div>
+            @if($isFollowingSection)
+            <div id="followingsSection">
+                <div class="bg-white shadow mt-6 rounded-lg p-6 overflow-x-auto">
+                <h3 class="text-gray-600 text-sm font-semibold mb-4 sticky top-0 bg-white z-10 px-6">
+                    Followings
+                </h3>
+                <ul id="storiesContainer" class="flex space-x-4 p-4 list-none">
+                    <!-- Your story items here -->
+                    <!-- Example: Add 11 story items dynamically -->
+                   @forelse($followingUsers as $followingUser)
+                    <li class="flex-shrink-0 flex flex-col items-center">
+                        <a class="block bg-white p-1 rounded-full" href="#">
+                            <img class="w-16 rounded-full" src="{{ $followingUser->following->photo }}">
+                        </a>
+                        <!-- Username -->
+                        <span class="text-xs text-gray-500 mt-1">
+                            {{ $followingUser->following->name }}
+                        </span>
+                    </li>
+                    @empty
+                        <p>No Following Users Found.</p>
+                    @endforelse
+                </ul>
+            </div>
+            </div>
+            @endif
+
+            @if($isSavedPostSection)
+            <div id="savedSection">
+                <div class="flex pt-4">
+                    <div class="flex-1 text-center px-4 py-2 m-2">
+                        <img
+                        class="w-full"
+                        src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                        />
+                    </div>
+                    <div class="flex-1 text-center px-4 py-2 m-2">
+                        <img
+                        class="w-full"
+                        src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                        />
+                    </div>
+                    <div class="flex-1 text-center px-4 py-2 m-2">
+                        <img
+                        class="w-full"
+                        src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+                        />
+                    </div>
+                </div>
+            </div>
+            @endif
+
         </div>
+
 
         {{-- <div class="flex bg-white shadow mt-6  rounded-lg p-2">
             <img src="https://images.unsplash.com/photo-1439130490301-25e322d88054?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1189&amp;q=80" alt="Just a flower" class=" w-16  object-cover  h-16 rounded-xl">

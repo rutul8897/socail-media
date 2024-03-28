@@ -16,6 +16,8 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.2",
+        "pestphp/pest": "^2.34",
+        "pestphp/pest-plugin-laravel": "^2.2",
         "phpunit/phpunit": "^10.0",
         "spatie/laravel-ignition": "^2.0"
     },
@@ -42,7 +44,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "test": "vendor/bin/pest"
     },
     "extra": {
         "laravel": {
@@ -52,7 +55,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

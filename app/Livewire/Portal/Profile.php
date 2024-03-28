@@ -16,8 +16,7 @@ class Profile extends Component
     public $location;
     public $about;
     public $photo;
-    public $isFollowingSection = true;
-    public $isSavedPostSection = false;
+
     protected $listeners = ['refresh-me' => '$refresh'];
 
 
@@ -56,17 +55,6 @@ class Profile extends Component
             $this->photo =  '/storage/'. $path;
         }
         $this->dispatch('refresh-me')->self();
-    }
-
-    public function selectSection($sectionName)
-    {
-        if ($sectionName == 'savedPost') {
-            $this->isFollowingSection = false;
-            $this->isSavedPostSection = true;
-        } else {
-            $this->isFollowingSection = true;
-            $this->isSavedPostSection = false;
-        }
     }
 
     public function render()

@@ -20,6 +20,7 @@ class Home extends Component
     public $photos = [];
     // public $comment = '';
     public $perPage = 3;
+    public $searchTerm = '';
     // public $posts = [];
 
     public $totalLikes = 0;
@@ -156,7 +157,9 @@ class Home extends Component
         $followingUserIds = Auth::user()->followings()->pluck('following_id')->toArray();
         $followerUserIds = Auth::user()->followers()->pluck('follower_id')->toArray();
         $postUserIds = array_merge($followerUserIds, $followingUserIds, [Auth::id()]);
-        $posts = Post::with('postComments', 'postLikes')->whereIn('user_id', $postUserIds)->latest()->take($this->perPage)->get();
+        $posts = Post::with('postComments', 'postLikes')->when($this->searchTerm != '', function ($q) {
+            $q->where('caption', 'like', $this->searchTerm);
+        })->whereIn('user_id', $postUserIds)->latest()->take($this->perPage)->get();
         // $posts = Post::with('postComments', 'postLikes')->latest()->get();
 
         return view('livewire.portal.home', [

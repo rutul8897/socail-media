@@ -5,7 +5,7 @@
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white">
-                        User liked
+                        People who have liked this post.
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" wire:click="hideLikeModal('{{ $postId }}')">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -15,7 +15,7 @@
                     </button>
                 </div>
                 <div class="p-6 space-y-6">
-                    @foreach ($likedUsers as $key => $likedUser)
+                    @forelse ($likedUsers as $key => $likedUser)
                     <div class="pt--10 pr-0 pb-2 pl-0">
                         <div class="pt-5 pr-0 pb-0 pl-0 mt-5 mr-0 mb-0 ml-0">
                             <div class="sm:flex sm:items-center sm:justify-between sm:space-x-5">
@@ -29,7 +29,9 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                        <p>No likes yet</p>
+                    @endforelse
                 </div>
             </div>
         </div>

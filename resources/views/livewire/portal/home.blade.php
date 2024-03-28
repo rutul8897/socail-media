@@ -36,6 +36,11 @@
             </form>
             <livewire:portal.post-liked-users />
 
+             <div class=" bg-white shadow rounded-lg mb-6 p-4">
+                <input type="text" wire:model.live="searchTerm" class="bg-gray-100 rounded-lg border border-transparent p-3 w-full" placeholder="Search somthing..." style="min-width:400px;">
+                @if($searchTerm)<span class="pt-3">Search for {{ $searchTerm }}</span>@endif
+            </div>
+
             @forelse($posts as $post)
             {{-- <livewire:portal.post-liked-users wire:key="like.{{$post->id}}"  :postId="$post->id" /> --}}
             <div class="bg-white shadow rounded-lg mb-6" wire:key="post.{{$post->id}}">
@@ -65,14 +70,14 @@
                 <div class="text-gray-500 text-sm mb-6 mx-3 px-2">{{ $post->caption }}</div>
                 <div class="flex justify-start mb-4 border-t border-gray-100">
                     <div class="flex w-full mt-1 pt-2 pl-5">
-                        <span class="bg-white transition ease-out duration-300 hover:text-red-500 border px-2 pt-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
+                       {{--  <span class="bg-white transition ease-out duration-300 hover:text-red-500 border px-2 pt-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                             </svg>
-                        </span>
+                        </span> --}}
                         <!-- Modal toggle -->
                         <button wire:click="$dispatch('showLikedUsers', { postId : {{$post->id}} })" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                          Toggle modal
+                          Show all likes
                         </button>
                        {{--  <img class="inline-block object-cover w-10 h-10 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
                         <img class="inline-block object-cover w-10 h-10 -ml-2 text-white border-2 border-white rounded-full shadow-sm cursor-pointer" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
@@ -85,11 +90,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                             </svg>
                         </span>
-                        <span class="transition ease-out duration-300 hover:bg-gray-50 bg-gray-100 w-10 h-10 px-2 py-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
+                       {{--  <span class="transition ease-out duration-300 hover:bg-gray-50 bg-gray-100 w-10 h-10 px-2 py-2 text-center rounded-full text-gray-400 cursor-pointer mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="22px" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
                             </svg>
-                        </span>
+                        </span> --}}
                        {{--  <span class="transition ease-out duration-300 hover:bg-blue-50 bg-blue-100 w-10 h-10 px-2 py-2 text-center rounded-full text-blue-400 cursor-pointer mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="22px" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>

@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Post;
 use App\Mail\WelcomeUser;
 use Mail;
 use Hash;
@@ -11,6 +12,9 @@ use Hash;
 class Users extends Component
 {
     public $user, $name, $userId, $email, $phone, $location, $about, $addUserSection = false, $editUserSection = false;
+
+    public $showUserPostSection = false;
+    public $posts = [];
 
     /**
      * List of add/edit form rules
@@ -157,4 +161,11 @@ class Users extends Component
             session()->flash('error', "Something goes wrong!!");
         }
     }
+
+    public function showUserPosts($userId)
+    {
+        $this->posts = Post::where('user_id', $userId)->get();
+        $this->showUserPostSection = true;
+    }
+
 }

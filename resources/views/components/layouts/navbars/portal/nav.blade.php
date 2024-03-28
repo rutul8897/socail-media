@@ -10,14 +10,14 @@
 
     <!-- search bar -->
     <!-- <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2"> -->
-    <div class="relative hidden sm:block flex-shrink flex-grow-0">
-        <input type="text" class="bg-purple-white bg-gray-100 rounded-lg border-0 p-3 w-full" placeholder="Search somthing..." style="min-width:400px;">
+   {{--  <div class="relative hidden sm:block flex-shrink flex-grow-0">
+        <input type="text" wire:model="search" class="bg-purple-white bg-gray-100 rounded-lg border-0 p-3 w-full" placeholder="Search somthing..." style="min-width:400px;">
         <div class="absolute top-0 right-0 p-4 pr-3 text-purple-lighter">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
         </div>
-    </div>
+    </div> --}}
     <!-- end search bar -->
 
     <!-- login -->
@@ -42,6 +42,20 @@
         <a href="{{ route('user-profile') }}" class="pl-3">
           <i class="ti ti-user-circle text-black text-3xl"></i>
         </a>
+
+        <a href="{{ route('user-profile') }}" class="pl-3">
+         <svg
+         class="h-6 w-6"
+         fill="none"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         stroke-width="2"
+         stroke="currentColor"
+         viewBox="0 0 24 24"
+         >
+         <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+       </svg>
+     </a>
 
         <a href="javascript:;" wire:click="logout" class="pl-3">
           {{-- <i class="ti ti-logout text-black text-3xl"></i> --}}

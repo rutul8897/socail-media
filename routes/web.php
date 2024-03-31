@@ -7,12 +7,7 @@ use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\SignUp;
 use App\Livewire\Auth\Login;
 use App\Livewire\Dashboard;
-use App\Livewire\Billing;
 use App\Livewire\Profile;
-use App\Livewire\Tables;
-use App\Livewire\StaticSignIn;
-use App\Livewire\StaticSignUp;
-use App\Livewire\Rtl;
 use App\Livewire\Portal\Home;
 use App\Livewire\Portal\Profile as PortalUserProfile;
 use App\Livewire\Portal\Followers;
@@ -53,12 +48,7 @@ Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/tables', Tables::class)->name('tables');
-    Route::get('/static-sign-in', StaticSignIn::class)->name('sign-in');
-    Route::get('/static-sign-up', StaticSignUp::class)->name('static-sign-up');
-    Route::get('/rtl', Rtl::class)->name('rtl');
     // Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
     Route::get('/users', Users::class)->name('users');
 });

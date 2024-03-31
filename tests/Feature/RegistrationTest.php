@@ -39,17 +39,16 @@ it('shows validation error when password requirement not match', function () {
         ->assertHasErrors(['password']);
 });
 
-// it('register new user with valid data', function () {
-//     Livewire::test(SignUp::class)
-//         ->set('name', 'John Doe')
-//         ->set('email', 'john@gmail.com')
-//         ->set('password', 'password')
-//         ->call('register')
-//         ->assertRedirect('/');
+it('register new user with valid data', function () {
+    Livewire::test(SignUp::class)
+        ->set('name', 'John Doe')
+        ->set('email', 'john@gmail.com')
+        ->set('password', 'password')
+        ->call('register');
 
-//     // Assert that a user with the given email has been created
-//     expect(User::where('email', 'john@gmail.com')->exists())->toBeTrue();
-// });
+    // Assert that a user with the given email has been created
+    expect(User::where('email', 'john@gmail.com')->exists())->toBeTrue();
+});
 
 // it('can login', function () {
 //     $user = User::first();

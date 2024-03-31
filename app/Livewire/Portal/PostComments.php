@@ -27,7 +27,7 @@ class PostComments extends Component
     //     $this->dispatch('open-comment-modal');
     // }
 
-     public function mount(Post $post)
+    public function mount(Post $post)
     {
         // \Log::info('showCommentModal');
         $this->post = $post;

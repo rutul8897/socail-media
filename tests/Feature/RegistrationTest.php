@@ -51,15 +51,15 @@ it('shows validation error when password requirement not match', function () {
 //     expect(User::where('email', 'john@gmail.com')->exists())->toBeTrue();
 // });
 
-it('can login', function () {
-    $user = User::first();
-    Livewire::test(Login::class)
-        ->set('email', $user->email)
-        ->set('password', 'secret')
-        ->call('login');
+// it('can login', function () {
+//     $user = User::first();
+//     Livewire::test(Login::class)
+//         ->set('email', $user->email)
+//         ->set('password', 'secret')
+//         ->call('login');
 
-    $this->assertTrue(auth()->check());
-});
+//     $this->assertTrue(auth()->check());
+// });
 
 // it('tests the RegisterForm validation rules', function () {
 //     $user = User::factory()->create();

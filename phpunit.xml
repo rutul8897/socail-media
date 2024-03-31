@@ -14,7 +14,7 @@
     </testsuites>
     <coverage>
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./app/Livewire/</directory>
         </include>
     </coverage>
     <php>

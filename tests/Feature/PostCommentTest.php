@@ -5,11 +5,11 @@ use App\Models\Post;
 use Livewire\Livewire;
 use App\Livewire\Portal\PostComments;
 
-// beforeEach(function () {
-//     $this->user = User::find(2);
-//     $this->post = Post::with('postComments', 'postLikes', 'user', 'postImages')->find(1);
-//     Auth::login($this->user);
-// });
+beforeEach(function () {
+    $this->user = User::find(2);
+    $this->post = Post::with('postComments', 'postLikes', 'user', 'postImages')->find(1);
+    Auth::login($this->user);
+});
 
 // it('mounts component and loads comments for a post', function () {
 
@@ -35,5 +35,5 @@ use App\Livewire\Portal\PostComments;
 //     Livewire::test(PostComments::class, ['post' => $this->post])
 //         ->call('loadMore')
 //         ->assertSet('comments', $this->post->postParentComments()->latest()->take(3)->get())
-//         ->assertSet('perPage', 3);
+//         ->assertSet('totalParentComments', 3);
 // });

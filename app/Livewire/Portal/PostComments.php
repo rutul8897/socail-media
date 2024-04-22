@@ -47,6 +47,7 @@ class PostComments extends Component
     public function loadComments()
     {
         $this->comments = $this->post->postParentComments()->latest()->take($this->perPage)->get();
+        \Log::debug('comments', [$this->post]);
         $this->totalParentComments = $this->post->postParentComments()->count();
 
         // foreach ($this->comments as $comment) {
